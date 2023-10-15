@@ -1,6 +1,6 @@
 # Labs
 
-* [lab3](lab3.md)
+* [lab1](lab1-public/lab1.md)
 
 # Homeworks
 
