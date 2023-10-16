@@ -3,7 +3,7 @@ Todays lab contains of two parts. First in colab and second in MuJoCo simulator.
 
 # Colab
 
-https://colab.research.google.com/drive/13rRYLl8PN5FEXEpx5aZsUQW6Eohve3xK
+[lab1-colab](https://colab.research.google.com/github/mim-uw/rc-2023-24/blob/master/docs/lab1-public/lab1-colab-student.ipynb)
 
 # MuJoCo
 
