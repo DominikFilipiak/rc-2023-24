@@ -1,6 +1,5 @@
 Todays lab contains of two parts. First in colab and second in MuJoCo simulator.
 
-
 # Colab
 
 [lab1-colab](https://colab.research.google.com/github/mim-uw/rc-2023-24/blob/master/docs/lab1-public/lab1-colab-student.ipynb)
