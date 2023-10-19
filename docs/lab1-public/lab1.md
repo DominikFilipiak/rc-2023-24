@@ -12,6 +12,13 @@ A significant portion of robotics work occurs in simulators rather than in reali
 1. Install MuJoCo (just exe, no python bindings).
    - GitHub repo is available at: https://github.com/google-deepmind/mujoco
    - Current release https://github.com/google-deepmind/mujoco/releases/tag/2.3.7
+   - Instead of installing MuJoCo exe, you can use python like this:
+   ```bash
+   python3 -m venv rc_venv
+   . ./rc_venv/bin/activate
+   pip install mujoco
+   python -m mujoco.viewer 
+   ```
 2. Run MuJoCo simulator (you should see something like this): 
 ![](mujoco_1.png)
 3. Drag and drop the world from file `world1.xml` into the simulator (see below for further instructions) `4x4_1000-0.png` must be in the same directory as `world1.xml`
