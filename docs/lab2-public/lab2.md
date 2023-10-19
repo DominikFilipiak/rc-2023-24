@@ -146,22 +146,22 @@ You can take the following XML file as a reference:
             <geom size="0.01 0.01 0.5" rgba="0 0 1 0.5" type="box"/>
         </body>
         <body name="car" pos="0 0 0.1" axisangle="0 0 1 0">
-            <geom size="0.2 0.1 0.02" rgba="1 1 1 0.9" type="box"/>
+            <geom size="0.2 0.1 0.02" rgba="1 1 1 1" type="box"/>
         </body>
         <body name="wheel_1" pos="0.1 0.1 0.1" axisangle="1 0 0 90">
-            <geom size="0.07 0.01" rgba="1 1 1 0.9" type="cylinder"/>
+            <geom size="0.07 0.01" rgba="1 1 1 1" type="cylinder"/>
         </body>
         <body name="wheel_2" pos="-0.1 0.1 0.1" axisangle="1 0 0 90">
-            <geom size="0.07 0.01" rgba="1 1 1 0.9" type="cylinder"/>
+            <geom size="0.07 0.01" rgba="1 1 1 1" type="cylinder"/>
         </body>
         <body name="wheel_3" pos="0.1 -0.1 0.1" axisangle="1 0 0 90">
-            <geom size="0.07 0.01" rgba="1 1 1 0.9" type="cylinder"/>
+            <geom size="0.07 0.01" rgba="1 1 1 1" type="cylinder"/>
         </body>
         <body name="wheel_4" pos="-0.1 -0.1 0.1" axisangle="1 0 0 90">
-            <geom size="0.07 0.01" rgba="1 1 1 0.9" type="cylinder"/>
+            <geom size="0.07 0.01" rgba="1 1 1 1" type="cylinder"/>
         </body>
         <body name="radar_1" pos="0 -0.1 0.2" axisangle="1 0 0 30">
-            <geom size="0.01 0.01 0.1" rgba="1 1 1 0.9" type="box"/>
+            <geom size="0.01 0.01 0.1" rgba="1 1 1 1" type="box"/>
         </body>
         <body name="radar_2" pos="0 -0.15 0.29" axisangle="1 0 0 30">
             <geom size="0.03 0.01" rgba="1 0 0 1" type="cylinder"/>
@@ -183,12 +183,12 @@ and creates the XML file for the car with the radar. The XML file should be save
 
 ## Programming part 2
 
-Write a python program, that creates a video of a car starting at coordinates (-3,-3) pointing to (3, -3) driving in a circle with radius 3, finishing at point (0, 0). The radar should move around the car in the opposite direction.
+Resize (shrink) floor from 2x2 to 1x1 size.
+
+Write a python program, that creates a video of a car starting at coordinates (-1,-1) pointing to (1, -1) driving in a circle with radius 1, finishing at point (0, 0). The radar should move around the car in the opposite direction.
 
 You can use following code as an example of video creation:
 
-
-Python program creating frames:
 ```python
 import mujoco
 import matplotlib.pylab as plt
@@ -197,6 +197,9 @@ import matplotlib.pylab as plt
 for i in range(10):
     xml = f"""
 <mujoco>
+  <visual>
+     <global offwidth="1280" offheight="1280"/>
+  </visual>
   <worldbody>
     <light name="top" pos="0 0 1"/>
     <geom name="red_box" type="box" size=".2 .2 .2" rgba="1 0 0 1"/>
@@ -206,7 +209,7 @@ for i in range(10):
 """
     model = mujoco.MjModel.from_xml_string(xml)
     data = mujoco.MjData(model)
-    renderer = mujoco.Renderer(model)
+    renderer = mujoco.Renderer(model, 1280, 1280)
 
     mujoco.mj_forward(model, data)
     renderer.update_scene(data)
@@ -215,5 +218,5 @@ for i in range(10):
 
 ffmpeg command to create a video:
 ```
-ffmpeg -framerate 3 -pattern_type glob -i 'frame*.png' -c:v libx264 -pix_fmt yuv420p output.mp4
+ffmpeg -framerate 30 -pattern_type glob -i 'frame*.png' -c:v libx264 -pix_fmt yuv420p output.mp4
 ```
