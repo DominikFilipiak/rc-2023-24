@@ -1,30 +1,38 @@
-Todays lab contains of two parts. First on the blackboard and second in MuJoCo simulator.
+Todays lab is divided into two parts. First one concerns 3D transformations and will be conducted mostly on the blackboard. The second part happens in the MuJoCo simulator.
 
+# 3D Transformations
 
-# Blackboard
+## Basic transformations
+1. Create a matrix M1 that rotates 3D space around the x axis by 90 degrees.
+2. Create a matrix M2 that rotates 3D space around the y axis by 90 degrees.
+3. Create a matrix M3 that translates 3D space by 1 unit along the x axis and then rotates it around the y axis by 90 degrees.
 
-Read: https://mathworld.wolfram.com/RodriguesRotationFormula.html
+## Composition of transformations
+4. Consider two multiplications: M1 * M2 and M2 * M1. Do you expect to get the same results? Check computationally if your predictions were correct.
+5. Create a matrix M4 that rotates 3D space around the y axis by 90 degrees and then moves it by 1 unit along the x axis.
+6. Consider two multiplications: M3 * M4 and M4 * M13. Do you expect to get the same results? Check computationally if your predictions were correct.
+7. Create a matrix M5 that rotates a 3D space around the (1, 1, 0) vector by any given number of degrees.
+_Hint:_ remember that sometimes it is easier to describe a transformation using different coordinates (e.g. choosing a different basis).
+If you have such new coordinate system, then describing the transformation in original coordinates requires only finding the transformation between your two coordinate systems and then composing appropriate transformations in correct order.
 
-1. Create matrix M1 that rotates a 3D space around the x axis by 90 degrees.
-2. Create matrix M2 that rotates a 3D space around the y axis by 90 degrees.
-3. What is the result of M1 * M2?
-4. What is the result of M2 * M1?
-5. Create matrix M3 that moves a 3D space by 1 unit along the x axis and then rotates it around the y axis by 90 degrees.
-6. Create matrix M4 that rotates a 3D space around the y axis by 90 degrees and then moves it by 1 unit along the x axis.
-7. What is the result of M3 * M4?
-8. What is the result of M4 * M3?
-9. Not using Rodrigues formula, create a matrix M5 that rotates a 3D space around the (1, 1, 0) vector by any given number of degrees.
-10. Using Rodrigues formula, create a matrix M6 that rotates a 3D space around the (1, 1, 1) vector by 90 degrees.
-11. We have following rotation matrix:
+## Different representations of transformations
+
+Familirize yourself with the Rodrigues Formula: https://mathworld.wolfram.com/RodriguesRotationFormula.html.
+
+8. Use the Rodrigues Formula to create a matrix M5 from the previous exercise. Compare the results and make sure they are the same.
+9. Use the Rodrigues Formula to create a matrix M6 that rotates 3D space around the (1, 1, 1) vector by 90 degrees.
+
+If you want to know more about Rodrigues Formula and how it is derived you can check out these videos: https://www.youtube.com/watch?v=UaK2q22mMEg and https://www.youtube.com/watch?v=q-ESzg03mQc.
+
+10. We have the following rotation matrix:
 ```python
-r = [[0.966496, -0.214612, 0.14081],
+R = [[0.966496, -0.214612, 0.14081],
      [0.241415, 0.946393, -0.214612],
      [-0.0872034, 0.241415, 0.966496]]
 ```
-What is the axis of rotation and the angle of rotation of matrix r?
-
-
-# MuJoCo
+What is the axis and the angle of rotation R? _Hint:_ consider a vector parallel to the axis of rotation. How the matrix R should act on this vector?
+   
+# MuJoCo (part two)
 
 We are going to:
 - build a car with wheels and a radar
