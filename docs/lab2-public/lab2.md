@@ -41,7 +41,7 @@ We are going to:
 
 ## Coordinate frames
 
-In this lab we are going to build a car with a radar. Let's start with the following XML file describing the world:
+Let's start with the following XML file describing the world:
 
 
 ```xml
@@ -67,116 +67,86 @@ You can view the world in MuJoCo simulator. You can also install mujoco `pip ins
 python -m mujoco.viewer
 ```
 
-And you should see something like this:
+Whichever method you choose, you should see something like this:
 
 ![](lab_2_1.png)
 
-Now add the third arrow (it's a box, but let's call it arrow) for the z-axis.
+As you can see we represent unit vectors along x and y axes using narrow boxes and call them "arrows".
+Now add a third arrow for the unit vector along the z-axis.
 
-Note, that the length of the arrow is not 0.5 but 1. This is because (https://mujoco.readthedocs.io/en/stable/XMLreference.html#body-geom) MuJoCo uses half-sizes for the box as stated in the documentation:
+Note, that the arrows we have created are indeed unit vectors.
+This is because MuJoCo uses half-sizes for the bodies of a box type as stated in the documentation:
 
 ```
 Three size parameters are required, corresponding to the half-sizes of the box along the X, Y and Z axes of the geom’s frame.
 ```
+Therefore in our case the boxes have length equal to 1 and width and depth equal to 0.02.
+
+You can find full documentation of different body types here: https://mujoco.readthedocs.io/en/stable/XMLreference.html#body-geom.
 
 ## Car body and wheels
 
-We have a car with two deffects:
-- first, one of the wheels is not rotated correctly,
-- second, car has only two wheels, but we need four.
-
-The car XML file looks like this:
+We provide you with the following, **imperfect** car body XML description:
 
 ```xml
-<?xml version="1.0" ?>
-<mujoco>
-    <worldbody>
-
-        <body name="x_arrow" pos="0.5 0 0">
-            <geom size="0.5 0.01 0.01" rgba="1 0 0 0.5" type="box"/>
-        </body>
-        <body name="y_arrow" pos="0 0.5 0">
-            <geom size="0.01 0.5 0.01" rgba="0 1 0 0.5" type="box"/>
-        </body>
-        <body name="z_arrow" pos="0 0 0.5">
-            <geom size="0.01 0.01 0.5" rgba="0 0 1 0.5" type="box"/>
-        </body>
-        <body name="car" pos="0 0 0.1" axisangle="0 0 1 0">
-            <geom size="0.2 0.1 0.02" rgba="1 1 1 0.9" type="box"/>
-        </body>
-        <body name="wheel_1" pos="0.1 0.1 0.1" axisangle="1 0 0 90">
-            <geom size="0.07 0.01" rgba="1 1 1 0.9" type="cylinder"/>
-        </body>
-        <body name="wheel_2" pos="-0.1 0.1 0.1" axisangle="1 0 0 0">
-            <geom size="0.07 0.01" rgba="1 1 1 0.9" type="cylinder"/>
-        </body>
-    </worldbody>
-</mujoco>
+<body name="car" pos="0 0 0.1" axisangle="0 0 1 0">
+    <geom size="0.2 0.1 0.02" rgba="1 1 1 0.9" type="box"/>
+</body>
+<body name="wheel_1" pos="0.1 0.1 0.1" axisangle="1 0 0 90">
+    <geom size="0.07 0.01" rgba="1 1 1 0.9" type="cylinder"/>
+</body>
+<body name="wheel_2" pos="-0.1 0.1 0.1" axisangle="1 0 0 0">
+    <geom size="0.07 0.01" rgba="1 1 1 0.9" type="cylinder"/>
+</body>
 ```
 
-What is wrong with `wheel_2`? It is not rotated correctly. The rotation is defined by the `axisangle` attribute with four numbers:
-the first three numbers are the axis of rotation, and the last number is the angle of rotation.
-The axis is defined in the local coordinate frame of the body. The angle is in degrees.
+Add it to your XML file and check how the result looks like.
+As you can see there are two deffects:
+1. one of the wheels has an incorrect pose,
+2. the car has only two wheels and we need four.
+
+### Correct pose of the wheels
+
+What is wrong with the `wheel_2`? It's incorrectly rotated.
+The rotation is defined by the `axisangle` attribute with four numbers:
+
+ - the first three numbers define the axis of rotation
+ - the last number determines the angle of rotation.
+
+The axis is defined in the local coordinate frame of the body.
+The angle is measured in degrees.
 You can read more about it here: https://mujoco.readthedocs.io/en/stable/modeling.html#corientation
 
-Rotate the wheel so that it is parallel to the ground.
-
+Rotate the wheel to position it correctly.
 Your result should look like this:
 
 ![](lab_2_2.png)
 
-There are only two wheels and we need four. Add the other two wheels. Experiment with different positions and rotations, change the size of the wheels.
+### Adding missing wheels
+
+Another problem we have is that there are only two wheels and we need four.
+Add the other two wheels.
+Experiment with different positions, rotations and sizes of the wheels.
 
 ## Radar
 
-The last step is to add a radar to the car. The radar is a box rotated 30 degrees about x axis with a red cylinder on top. 
-In its default position the radar is pointing to the right, but we want it to point in any direction.
-The final result could look like this:
-
-![](lab_2_3.png)
-
-You can take the following XML file as a reference:
+The last step is to add a radar to the car.
+You can do it by adding the following description to your XML file:
 
 ```xml
-<?xml version="1.0" ?>
-<mujoco>
-    <worldbody>
-        <body name="floor" pos="0 0 -0.1">
-            <geom size="2.0 2.0 0.02" rgba="0.2 0.2 0.2 1" type="box"/>
-        </body>
-        <body name="x_arrow" pos="0.5 0 0">
-            <geom size="0.5 0.01 0.01" rgba="1 0 0 0.5" type="box"/>
-        </body>
-        <body name="y_arrow" pos="0 0.5 0">
-            <geom size="0.01 0.5 0.01" rgba="0 1 0 0.5" type="box"/>
-        </body>
-        <body name="z_arrow" pos="0 0 0.5">
-            <geom size="0.01 0.01 0.5" rgba="0 0 1 0.5" type="box"/>
-        </body>
-        <body name="car" pos="0 0 0.1" axisangle="0 0 1 0">
-            <geom size="0.2 0.1 0.02" rgba="1 1 1 1" type="box"/>
-        </body>
-        <body name="wheel_1" pos="0.1 0.1 0.1" axisangle="1 0 0 90">
-            <geom size="0.07 0.01" rgba="1 1 1 1" type="cylinder"/>
-        </body>
-        <body name="wheel_2" pos="-0.1 0.1 0.1" axisangle="1 0 0 90">
-            <geom size="0.07 0.01" rgba="1 1 1 1" type="cylinder"/>
-        </body>
-        <body name="wheel_3" pos="0.1 -0.1 0.1" axisangle="1 0 0 90">
-            <geom size="0.07 0.01" rgba="1 1 1 1" type="cylinder"/>
-        </body>
-        <body name="wheel_4" pos="-0.1 -0.1 0.1" axisangle="1 0 0 90">
-            <geom size="0.07 0.01" rgba="1 1 1 1" type="cylinder"/>
-        </body>
-        <body name="radar_1" pos="0 -0.1 0.2" axisangle="1 0 0 30">
-            <geom size="0.01 0.01 0.1" rgba="1 1 1 1" type="box"/>
-        </body>
-        <body name="radar_2" pos="0 -0.15 0.29" axisangle="1 0 0 30">
-            <geom size="0.03 0.01" rgba="1 0 0 1" type="cylinder"/>
-        </body>
-    </worldbody>
-</mujoco>
+<body name="radar_1" pos="0 -0.1 0.2" axisangle="1 0 0 30">
+    <geom size="0.01 0.01 0.1" rgba="1 1 1 1" type="box"/>
+</body>
+<body name="radar_2" pos="0 -0.15 0.29" axisangle="1 0 0 30">
+    <geom size="0.03 0.01" rgba="1 0 0 1" type="cylinder"/>
+</body>
 ```
+
+As you can see, the radar is a box with a red cylinder on top.
+Initially it is rotated 30 degrees about the x axis.
+The final result should look like this:
+
+![](lab_2_3.png)
 
 ## Programming part 1
 
