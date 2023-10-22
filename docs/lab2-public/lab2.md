@@ -143,29 +143,16 @@ You can do it by adding the following description to your XML file:
 ```
 
 As you can see, the radar is a box with a red cylinder on top.
-Initially it is rotated 30 degrees about the x axis.
+The angle between the radar and the direction of the z axis is constant and equals 30 degrees.
+Initially this is obtained by rotating the radar by 30 degrees about the x axis.
+Check the snippet above to make sure that this is the case.
 The final result should look like this:
 
 ![](lab_2_3.png)
 
-## Programming part 1
+## Video of a driving car
 
-Write a python program, that can take four parameters:
-
-- x position of the car
-- y position of the car
-- angle of the car (rotation clockwise along z axis)
-- angle of the radar (rotation clockwise along z axis)
-
-and creates the XML file for the car with the radar. The XML file should be saved as `car.xml`.
-
-## Programming part 2
-
-Resize (shrink) floor from 2x2 to 1x1 size.
-
-Write a python program, that creates a video of a car starting at coordinates (-1,-1) pointing to (1, -1) driving in a circle with radius 1, finishing at point (0, 0). The radar should move around the car in the opposite direction.
-
-You can use following code as an example of video creation:
+Take a look at the following python code:
 
 ```python
 import mujoco
@@ -194,7 +181,47 @@ for i in range(10):
     plt.imsave(f"frame_{i:03d}.png", renderer.render())
 ```
 
-ffmpeg command to create a video:
+After a short inspection you can probably realize that it produces consecutive frames of a video.
+You can run the script and then use the `ffmpeg` command to produce the video:
+
 ```
 ffmpeg -framerate 30 -pattern_type glob -i 'frame*.png' -c:v libx264 -pix_fmt yuv420p output.mp4
 ```
+
+Our goal is to produce a video of the car we have just created.
+The car will be driving on a circle.
+Simultanously we will also rotate the radar, so that it points all the time to the center of the circle.
+Let's divide the task into two parts.
+
+### Generating a driving car
+
+First write a python program which will generate a world scene with the car in specified positions and orientations.
+We will worry about rendering frames in a minute.
+
+The program should take four parameters:
+
+- the x coordinate of the position of the car
+- the y coordinate of the position of the car
+- the orientation of the car described by a clockwise rotation about the z axis
+- the orientation of the radar described by a clockwise rotation about the z axis.
+Remember that the angle between the radar and the z axis is constant (30 degrees).
+Therefore this parameter determines only the direction of the XY projection of the radar.
+
+The output of the program is an XML file for MuJoCo simulator.
+You can use the file you have created in the previous part as a template.
+The file describes a world with the car and its radar in a given pose.
+The XML file should be saved as `car.xml`.
+
+## Rendering frames
+
+Write a python program which renders video frames of a moving car.
+The car should start at coordinates (-1,-1) and point in the (1, 0) direction.
+Then it should drive on a circle with radius 1 and a center at (-1, 0).
+Looking from the top, the car moves in the counterclockwise direction and finishes at the point (0, 0).
+
+Remember to rotate the radar during car's movement, so that it always points to the center of the circle.
+You should:
+ - inititally rotate the radar 30 degrees about the x axis,
+ - keep the angle between the radar and the z direction constant, i.e. rotate only XY projection of the radar.
+
+If the scene doesn't fit in the camera frame, you can change the world size in the XML file.
