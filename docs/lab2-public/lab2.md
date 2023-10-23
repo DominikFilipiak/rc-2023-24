@@ -225,3 +225,7 @@ You should:
  - keep the angle between the radar and the z direction constant, i.e. rotate only XY projection of the radar.
 
 If the scene doesn't fit in the camera frame, you can change the world size in the XML file.
+
+The output of the program might look like this:
+
+![](car_moving.gif)
