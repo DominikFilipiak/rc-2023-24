@@ -5,13 +5,18 @@ Todays lab is divided into two parts. First one concerns 3D transformations and 
 ## Basic transformations
 1. Create a matrix M1 that rotates 3D space around the x axis by 90 degrees.
 2. Create a matrix M2 that rotates 3D space around the y axis by 90 degrees.
-3. Create a matrix M3 that translates 3D space by 1 unit along the x axis and then rotates it around the y axis by 90 degrees.
+3. Create a matrix M3 that translates 3D space by 1 unit along the x axis.
+
 
 ## Composition of transformations
-4. Consider two multiplications: M1 * M2 and M2 * M1. Do you expect to get the same results? Check computationally if your predictions were correct.
-5. Create a matrix M4 that rotates 3D space around the y axis by 90 degrees and then moves it by 1 unit along the x axis.
-6. Consider two multiplications: M3 * M4 and M4 * M13. Do you expect to get the same results? Check computationally if your predictions were correct.
-7. Create a matrix M5 that rotates a 3D space around the (1, 1, 0) vector by any given number of degrees.
+4. Consider two transformations:
+ - first one which translates 3D space by 1 unit along the x axis and then rotates it around the y axis by 90 degrees,
+ - second one which rotates 3D space around the y axis by 90 degrees and then moves it by 1 unit along the x axis.
+
+    Do you expect the matrices representing the above transformations to be the same?
+5. Consider the results of two multiplications: M4 = M2 * M3 and M5 = M3 * M2. Do you expect to get the same results? Check computationally if your predictions were correct.
+6. Consider two multiplications: M4 * M5 and M5 * M4. Do you expect to get the same results? Check computationally if your predictions were correct.
+7. Create a matrix M6 that rotates a 3D space around the (1, 1, 0) vector by any given number of degrees.
 _Hint:_ remember that sometimes it is easier to describe a transformation using different coordinates (e.g. choosing a different basis).
 If you have such new coordinate system, then describing the transformation in original coordinates requires only finding the transformation between your two coordinate systems and then composing appropriate transformations in correct order.
 
@@ -19,8 +24,8 @@ If you have such new coordinate system, then describing the transformation in or
 
 Familirize yourself with the Rodrigues Formula: https://mathworld.wolfram.com/RodriguesRotationFormula.html.
 
-8. Use the Rodrigues Formula to create a matrix M5 from the previous exercise. Compare the results and make sure they are the same.
-9. Use the Rodrigues Formula to create a matrix M6 that rotates 3D space around the (1, 1, 1) vector by 90 degrees.
+8. Use the Rodrigues Formula to create a matrix M6 from the previous exercise. Compare the results and make sure they are the same.
+9. Use the Rodrigues Formula to create a matrix M7 that rotates 3D space around the (1, 1, 1) vector by 90 degrees.
 
 If you want to know more about Rodrigues Formula and how it is derived you can check out these videos: https://www.youtube.com/watch?v=UaK2q22mMEg and https://www.youtube.com/watch?v=q-ESzg03mQc.
 
@@ -212,7 +217,7 @@ You can use the file you have created in the previous part as a template.
 The file describes a world with the car and its radar in a given pose.
 The XML file should be saved as `car.xml`.
 
-## Rendering frames
+### Rendering frames
 
 Write a python program which renders video frames of a moving car.
 The car should start at coordinates (-1,-1) and point in the (1, 0) direction.
