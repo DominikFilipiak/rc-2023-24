@@ -97,6 +97,14 @@ Note that if we have 4x5 checkers we have 3x4 intersection corners between check
 so with our 9x6 calibration checkerboard you should generate 40 object points.
 Also, `objpoints` should have type `np.float32` (the default of `np.float64` will not work).
 
+`calibrateCamera` takes `cameraMatrix` and `distCoeffs` as arguments, even though we want to find them.
+This is because, by setting some non-default flags in `calibrateCamera`, the function utilizes the initial values provided for these arguments.
+In our case, we should use:
+
+```python
+cameraMatrix = None, distCoeffs = None
+```
+
 
 :white_check_mark: **Undistort images**
 
