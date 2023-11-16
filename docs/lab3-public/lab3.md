@@ -84,10 +84,11 @@ img = Image.fromarray(renderer.render())
 img.save("red_ball.png")
 ```
 
-4. **Stereo Matching**: Your task is to implement your own depth detection using stereo matching. In mujoco/ you are presented with 3 files: reconstruct.py, left.png and right.png. reconstruct.py was used to
-   generate the world (two boxes and one sphere) as seen from two cameras (left.png, right.png) but the information about the positions of the objects was lost. Using the information about positions of the cameras, sizes
-   of the objects and your knowledge about relationship between disparity and baseline, find the coordinates of the
-   objects. Finish the implementation of reconstruct.py to reconstruct the scenes from left.png and right.py. The objects should be in very similar position, but don't worry if they are not exactly the same.
+4. **Stereo Matching**: Your task is to implement your own depth detection using stereo matching. In `mujoco/` you are presented with 3 files: `reconstruct.py`, `left.png` and `right.png`. `reconstruct.py` was used to
+   generate the world (two boxes and one sphere) as seen from two cameras (`left.png`, `right.png`) but the information about the positions of the objects was lost. Using all the information still available in the `reconstruct.py`
+   and your knowledge about relationship between disparity and baseline, find the coordinates of the
+   objects. Finish the implementation of `reconstruct.py` to reconstruct the scenes from `left.png` and `right.py`. The objects should be in very similar position, but don't worry if they are not exactly the same.
+   Tip: Start by finding the centers of the visible parts of the objects. Remember that the center of the entire box and its top face are slightly different in the `z` coordinate.
 
 
 ![](left_right.png)
