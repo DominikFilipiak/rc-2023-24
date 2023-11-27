@@ -14,7 +14,7 @@ You should submit via moodle:
 
 In this assignment, you should make a panorama of three photos. The method you will be using is called image stitching and it was described during Lecture 4 (you can access slides and recording on moodle).
 
-You are given 6 photos (attached at the bottom). The photos are taken with the same camera that was used during the 4th lab session. There are aruco.DICT_6X6_250 tags on the photos, which you can use to find the correct sequence of photos.
+You are given 4 photos (attached at the bottom). The photos are taken with the same camera that was used during the 4th lab session. There are aruco.DICT_6X6_250 tags on the photos, which you can use to find the correct sequence of photos.
 
 Although there are multiple implementations of image stitching using different libraries (OpenCV, skimage, ...) you should implement the method using only `numpy` for computations and `matplotlib` or `cv2` for displaying images.
 
