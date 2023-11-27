@@ -253,7 +253,7 @@ In the begining of this lab we have estimated cameraMatrix and distCoeffs of our
 :white_check_mark: Using `cv2.solvePnP` and [`cv2.projectPoints`](https://docs.opencv.org/4.8.0/d9/d0c/group__calib3d.html#ga1019495a2c8d1743ed5cc23fa0daff8c) (projects 3D points to 2D image, refer to lab3) write a program that draws 3D coordinate system with (0,0,0) at one corner of the chessboard
 with X, Y and Z axes as on image below:
 
-![Data](pnp_1.png)
+![Data](coordinate_system.jpg)
 
 You can use following code for drawing axes
 ```python
@@ -275,7 +275,8 @@ Use the images from `data` directory to test your code.
 
 Sometimes the data points may be noisy what can lead to poor results in pose estimation like on the image below:
 
-![Data](pnp_2.png)
+![Data](corners_bad.jpg)
+![Data](bad_coordinate_system.jpg)
 
 
 :white_check_mark:
