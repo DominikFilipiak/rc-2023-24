@@ -6,9 +6,12 @@ Not yet
 
 **The submission deadline is Dec 4 (Monday), 8:00am 2023.**
  
-You should submit via moodle:
-* created panoramas (Task 5 and Task 7),
-* source code and instruction how to run the code.
+You should submit via moodle. You should submit a zip or tgz file containing:
+* created panoramas: `task_5_stitched.jpg`, `task_6_stitched.jpg`, `task_7_1.jpg`, `task_7_2.jpg`
+* source code (preferably one `stitch.py` file)
+* `README.md` on how to run the code, and what parts of the code correspond to which tasks
+
+The solution file should be named `<students login>.tgz` (or `<students login>.zip`).
 
 # Task description
 
