@@ -9,6 +9,7 @@
 # Homeworks
 
 * [lab5](lab5-public/lab5.md)
+* [lab7](lab7-public/lab7.md)
 
 # Additional materials
 
