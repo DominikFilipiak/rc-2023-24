@@ -1,6 +1,9 @@
 # Updates
 
-Not yet
+- `2023-12-08` Remove `view` from description its left in `stub.py`.
+- `2023-12-08` Spell check (thanks Szymon).
+- `2023-12-08` Add return to `stub.py`
+- `2023-12-06` Adding notes about MuJoCo version (see the end of the page).
 
 # Submission format
 
@@ -75,11 +78,11 @@ At the end, your car should be close to the red ball (0.2 distance is fine). The
 
 For car control, you should use only `task_1_step(turn)` function, that drives forward with 0.1 speed with specified turn for 200 simulation steps.
 
-At the beginig car will be in the random position, because before your code, there is a  code that sets the position of the car:
+At the beginning, the car will be in a random position because before your code, there is code that sets the position of the car:
 
 ```python
 steps = random.randint(0, 2000)
-img = sim_step(0, 0.1, steps, view=False)
+img = sim_step(0, 0.1, steps)
 ```
 
 This exact code will be used for evaluation, so you should not change it.
@@ -97,10 +100,10 @@ As you can see, the ball is not directly before the car, because after the car s
 As in the first task, yout car is in the random position.
 
 ```python
-sim_step(0.5, 0, 1000, view=True)
+sim_step(0.5, 0, 1000)
 speed = random.uniform(0.3, 0.5)
 turn = random.uniform(-0.2, 0.2)
-img = sim_step(speed, turn, 1000, view=True)
+img = sim_step(speed, turn, 1000)
 ```
 
 For car control, you should use only `sim_step(forward, turn, steps)` function, that drives with specified forward and turn for 1000 simulation steps.
@@ -127,8 +130,14 @@ def task_3():
 and then it uses it in `task3_step` function:
     
 ```python
-def task3_step(forward, turn, steps=1000, view=False):
-    sim_step(forward, turn + drift, steps=steps, view=view)
+def task3_step(forward, turn, steps=1000):
+    sim_step(forward, turn + drift, steps=steps)
 ```
 
-So instead of driving with `turn` parameter, car drives with `turn + drift` parameter driftin in the random direction.
+So, instead of driving with the turn parameter, the car drives with the turn + drift parameter, drifting in a random direction.
+
+## MuJoCo version
+
+The code (`cars.xml`) is written for MuJoCo `2.3.7`. If you use a `3.x.y` version, you should change the `cars.xml` file:
+
+- you should change `actuatorforcerange` to `actuatorfrcrange` in `joint` definition.

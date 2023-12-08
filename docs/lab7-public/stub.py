@@ -42,6 +42,7 @@ def task_1():
 
     # TODO: change the lines below,
     # for car control, you should use task_1_step(turn) function
+    # you can change anything below this line
     for i in range(100):
         print(data.body("car").xpos)
         print(data.body("target-ball").xpos)
@@ -68,7 +69,7 @@ drift = 0
 
 
 def task3_step(forward, turn, steps=1000, view=False):
-    sim_step(forward, turn + drift, steps=steps, view=view)
+    return sim_step(forward, turn + drift, steps=steps, view=view)
 
 
 def task_3():
