@@ -12,6 +12,10 @@
 * [lab5](lab5-public/lab5.md)
 * [lab7](lab7-public/lab7.md)
 
+# Lecture notes
+
+* [LQR](lecture-notes-public/lqr-notes.pdf)
+
 # Additional materials
 
 1. [Exams 2022](exams_2022)
