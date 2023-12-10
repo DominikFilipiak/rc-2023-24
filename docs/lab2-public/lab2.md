@@ -1,4 +1,4 @@
-Todays lab is divided into two parts. First one concerns 3D transformations and will be conducted mostly on the blackboard. The second part happens in the MuJoCo simulator.
+In today's laboratory session, we will be focusing on 3D transformations, the pinhole camera model, and the fundamentals of stereo vision. We'll start with introductory exercises related to these topics. Then, the acquired knowledge will be applied to capture a video of a moving car in MuJoCo.
 
 # 3D Transformations
 
@@ -36,8 +36,20 @@ R = [[0.966496, -0.214612, 0.14081],
      [-0.0872034, 0.241415, 0.966496]]
 ```
 What is the axis and the angle of rotation R? _Hint:_ consider a vector parallel to the axis of rotation. How the matrix R should act on this vector?
+
+# Camera Callibration and Stereo
+
+## Intrinsic camera parameters
+
+11. Determine the intrinsic camera matrix of a pinhole cameras which has focal length of 1 and optical center at `(300.5, 300.5)`.
+
+12. Find 2D coordinates of the projection of the 3D point `(10, 10, 5)` onto an image captured by the camera from the previous exercise.
+
+## Basic triangulation
+
+13. Imagine that you have two cameras like in the previous exercises. The optical axes of both cameras are parallel. The axis of the second camera is displaced by `(x=1, y=0, z=0)` relative to the first camera. Estimate the distance from the first camera to a point whose coordinates are `(303, 303)` on an image captured by the first camera and `(298, 303)` on the image captured by the second camera.
    
-# MuJoCo (part two)
+# MuJoCo Simulation
 
 We are going to:
 - build a car with wheels and a radar
