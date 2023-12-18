@@ -36,15 +36,22 @@ Kalman filter has 3 matrix parameters:
 Kalman filter has two phases:
 
 - **predict** when it predicts the new state and updates covariance matrix. Here we rely solely on the linear model of the state transitions.
+
   $$ x'_k = A_k x_{k-1} $$
+
   $$ P'_k = A_k P_k A_k^T + Q $$
   
 
 - **update** when it updates the predictions based on observations
+  
   $$ y = z_k - Hx'_k $$
+
   $$ S = HP'_kH^T + R$$
+
   $$ K = P'_kH^TS^{-1} $$
+
   $$ x_k = x'_k + Ky$$
+
   $$ P_k = (I - KH)P'_k  $$
 
 If we don't have an observation from the current timestep, then \\(x_k = x'_k\\) and \\(P_k = P'_k\\).
