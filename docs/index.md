@@ -13,6 +13,7 @@
 
 * [lab5](lab5-public/lab5.md)
 * [lab7](lab7-public/lab7.md)
+* [lab10](lab10-public/lab10.md)
 
 # Lecture notes
 
