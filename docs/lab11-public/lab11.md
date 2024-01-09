@@ -1,6 +1,8 @@
 # LQR control
 
-
+<script type="text/javascript"
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 In this class we will implement LQR control for a cartpole system. We will use the [control](https://python-control.readthedocs.io/) library to design the controller and simulate the system.
 
 The lab consists of three parts:
@@ -170,6 +172,12 @@ Check what happens if you change the initial cart position and pole angle. What 
 
 Your task is to design an LQR controller that stabilizes the cartpole system to the origin.The linearization should be done at a fixed point.
 You should write a function that returns the matrices `A` and `B` of the linearized system.  You should know how to linearize the system from the previous classes. 
+
+(hint) You may find following equations usefull:
+
+$$\ddot{\theta} = \frac{(M+m)g\sin\theta - \cos\theta \left[ F + ml\dot{\theta}^2 \sin\theta \right]}{\left( \frac{4}{3} \right)(M+m) - ml\cos^2\theta}$$
+
+$$\ddot{x} = \frac{ \left\{ F + ml \left[ \dot{\theta}^2 \sin\theta - \ddot{\theta}\cos\theta \right] \right\} }{M+m}$$
 
 ```python
 def linearize(): # you can add arguments if you want
