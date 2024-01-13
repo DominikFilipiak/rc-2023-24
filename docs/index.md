@@ -19,6 +19,7 @@
 # Lecture notes
 
 * [LQR](lecture-notes-public/lqr-notes.pdf)
+* [Kalman filter](lecture-notes-public/kalman-notes.pdf)
 
 # Additional materials
 
