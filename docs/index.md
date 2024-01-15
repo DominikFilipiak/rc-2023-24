@@ -8,6 +8,7 @@
 * [lab8](lab8-public/lab8.md)
 * [lab9](lab9-public/lab9.md)
 * [lab11](lab11-public/lab11.md)
+* [lab12](lab12-public/README.md)
 
 
 # Homeworks
