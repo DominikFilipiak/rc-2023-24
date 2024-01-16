@@ -37,9 +37,9 @@ You can find it in `traffic_lights_world.xml`.
 
 ### PID controller
 
-Apart from the assets, you are provided with a `traffic_lights.py`` script that contains a partially implemented PID controller. This is where you will focus your efforts. In the following paragraphs, you will:
+Apart from the assets, you are provided with a `traffic_lights.py` script that contains a partially implemented PID controller. This is where you will focus your efforts. In the following paragraphs, you will:
 
-1. Execute the `traffic_lights.py`` script and choose an appropriate proportional gain for the PID controller to get the car moving in the desired direction.
+1. Execute the `traffic_lights.py` script and choose an appropriate proportional gain for the PID controller to get the car moving in the desired direction.
 2. Add a missing formula in the implementation of the derivative part of the PID controller to enhance the stability of the car's movement.
 3. Implement the integral part of the PID controller to allow the car to reach the traffic lights and remain stationary there.
 
@@ -62,7 +62,7 @@ if __name__ == '__main__':
     car_control(gain_prop = -1, gain_int = 0, gain_der = 0)
 ```
 
-After setting a proper `gain_prop``, the car is able to overcome the force of gravity (which is what was causing it to go in the wrong direction!) and drive towards the traffic lights.
+After setting a proper `gain_prop`, the car is able to overcome the force of gravity (which is what was causing it to go in the wrong direction!) and drive towards the traffic lights.
 This is because the resultant force of the car's motor is programmed to be directly proportional to the `error_prop`, i.e., the signed distance of the car to the traffic lights.
 
 ```python
@@ -84,7 +84,7 @@ We can improve how the car behaves by adding the derivative part to our controll
 To do this you should consider how the error is changing, i.e. use a derivative.
 
 In this case, the derivative error is proportional to the car's velocity.
-However, we should not directly retrieve it from MuJoCo (e.g., using data.body("x2").cvel[5]).
+However, we should not directly retrieve it from MuJoCo (e.g., using `data.body("x2").cvel[5]`).
 In real-world scenarios, we only have access to the information provided by the sensors.
 The sensor we have here measures the distance from the traffic lights.
 Therefore, we should only utilize this information.
