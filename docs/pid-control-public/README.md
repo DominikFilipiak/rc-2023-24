@@ -3,7 +3,8 @@ title: Homework 4
 ---
 
 # Updates:
-None yet
+ - added videos with example solutions
+ - misleading mentions about the velocity sensor replaced with paragraphs about the accelerometer
 
 # Submission format
 
@@ -41,7 +42,7 @@ In this task we make a (rather arificial) assumption that you have access to mea
 Namely:
     - we introduce gusts of wind which change randomly and can disturb the drone
     - the altitude sensor's frequency is significantly decreased
-    - we have access to a sensor for velocity which operates at a very high frequency
+    - we have access to a sensor measuring acceleration which operates at a very high frequency
 
 ## Assets
 
@@ -118,23 +119,21 @@ def sim_step(self, thrust, steps=1, view=True):
 
 #### Sensors
 
-Assuming that an instance of the `DroneSimulation` class was stored in a `drone_simulator` variable, you can get the sensor readings as follows:
-
-- for the altitudes: `drone_simulator.measured_altitudes`
-- for the velocities: `drone_simulator.measured_velocities`
-
-Both sensor readings are stored as a list with two values:
+Assuming that an instance of the `DroneSimulation` class was stored in a `drone_simulator` variable, you can get the altitude sensor readings with `drone_simulator.measured_altitudes`.
+The readings are stored as a list with two values:
 
 - the most recent reading
 - the previous reading
 
-Similarly, if you need a time period between two consequtive sensor readings you can call:
+If you need a time period between two consequtive sensor readings you can call `drone_simulator.altitude_sensor_period`.
 
-- for the altitude: `drone_simulator.altitude_sensor_period`
-- for the velocity: `drone_simulator.velocity_sensor_period`
+Acceleration sensor is implemented as a part of a Skydio model.
+We will discuss how to use it during the second task.
+
+#### Summary
 
 This is all you should need to implement the control for the drone.
-However, if you want to understand the `DroneSimulation` class better, you are always encouraged to go through the class definition.
+If you want to understand the `DroneSimulation` class better, you are always encouraged to go through the class definition.
 
 ## Task 1 - Single PID Controller
 
@@ -169,6 +168,13 @@ pid_altitude = PID(
 
 If you have properly implemented the `PID` class, you should be able to find appropriate gains to lift off the drone and fly it to the desired altitude.
 Make sure that you submit a script with only the values of the gains changed.
+
+We expect your solution to have at least as good performance as in the below video with an example solution:
+
+<video width="512" height="208" controls>
+  <source src="single-pid-example-solution.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ## Task 2 - Cascade PID Controller
 
@@ -258,6 +264,13 @@ Finally, note that since the conditions in this task are more difficult, we have
 You can change the simulation time or wind conditions when working on the problem.
 Just remember that at the end your solution should work in exactly the conditions specified in the task.
 So make sure to test and submit your solution with all of the parameters unchanged.
+
+We expect your solution to have at least as good performance as in the below video with an example solution:
+
+<video width="512" height="208" controls>
+  <source src="cascade-pid-example-solution.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 # References and Licenses
 
