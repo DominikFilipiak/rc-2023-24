@@ -1,3 +1,8 @@
+# Exam 
+
+* [task 1](exam_2024/practice-1/README.md)
+* [task 2](exam_2024/practice-2/README.md)
+
 # Labs
 
 * [lab1](lab1-public/lab1.md)
