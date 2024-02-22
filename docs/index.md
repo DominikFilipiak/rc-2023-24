@@ -2,6 +2,7 @@
 
 * [task 1](exam_2024/practice-1/README.md)
 * [task 2](exam_2024/practice-2/README.md)
+* [retake](exam_2024_retake/practice-1/README.md)
 
 # Labs
 
